@@ -20,20 +20,12 @@ class Base(Page):
     class Footer(Page):
         """The common Footer region that is present on every page."""
 
-        # The locators in this list contain examples of positional locators, a unique css locator,
-        # and a link text locator
         copyright_links_list = [
             {
-                'locator': (By.CSS_SELECTOR, '#copyright a:nth-of-type(1)'),
-                'url_suffix': 'http://www.mozilla.org/privacy-policy.html',
+                'locator': (By.LINK_TEXT, 'Privacy'),
+                'url_suffix': '//www.google.com/intl/en/policies/privacy/?fg=1',
             }, {
-                'locator': (By.CSS_SELECTOR, '#copyright a:nth-of-type(2)'),
-                'url_suffix': 'http://www.mozilla.org/about/legal.html'
-            }, {
-                'locator': (By.CSS_SELECTOR, '#site-info a.licence'),
-                'url_suffix': 'http://www.mozilla.org/foundation/licensing/website-content.html'
-            }, {
-                'locator': (By.LINK_TEXT, 'About'),
-                'url_suffix': '/about/'
+                'locator': (By.LINK_TEXT, 'Terms'),
+                'url_suffix': '//www.google.com/intl/en/terms/privacy/?fg=1'
             }
         ]
