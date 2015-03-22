@@ -13,9 +13,69 @@ class Base(Page):
     """
 
     @property
+    def header(self):
+        return self.Header(self.testsetup)    
+
+    @property
     def footer(self):
         """Return the common Footer region."""
         return self.Footer(self.testsetup)
+
+    class Header(Page):
+
+        _search_box_locator = (By.CSS_SELECTOR, '.search-query')
+        _profile_menu_locator = (By.CSS_SELECTOR, '#nav-main > a.dropdown-toggle')
+
+        # menu items
+        _dropdown_menu_locator = (By.CSS_SELECTOR, 'ul.dropdown-menu')
+        _view_profile_menu_item_locator = (By.ID, 'nav-profile')
+        _invite_menu_item_locator = (By.ID, 'nav-invite')
+        _edit_profile_menu_item_locator = (By.ID, 'nav-edit-profile')
+        _logout_menu_item_locator = (By.ID, 'nav-logout')
+
+        @property
+        def is_search_box_present(self):
+            return self.is_element_present(*self._search_box_locator)
+
+        def search_for(self, search_term):
+            search_field = self.selenium.find_element(*self._search_box_locator)
+            search_field.send_keys(search_term)
+            search_field.send_keys(Keys.RETURN)
+            from pages.search import Search
+            return Search(self.testsetup)
+
+        def click_options(self):
+            self.selenium.find_element(*self._profile_menu_locator).click()
+            WebDriverWait(self.selenium, self.timeout).until(lambda s: self.selenium.find_element(*self._dropdown_menu_locator))
+
+        @property
+        def is_logout_menu_item_present(self):
+            return self.is_element_present(*self._logout_menu_item_locator)
+
+        # menu items
+        def click_view_profile_menu_item(self):
+            self.click_options()
+            self.selenium.find_element(*self._view_profile_menu_item_locator).click()
+            from pages.profile import Profile
+            return Profile(self.testsetup)
+
+        def click_invite_menu_item(self):
+            self.click_options()
+            self.selenium.find_element(*self._invite_menu_item_locator).click()
+            from pages.invite import Invite
+            return Invite(self.testsetup)
+
+        def click_edit_profile_menu_item(self):
+            self.click_options()
+            self.selenium.find_element(*self._edit_profile_menu_item_locator).click()
+            from pages.edit_profile import EditProfile
+            return EditProfile(self.testsetup)
+
+        def click_logout_menu_item(self):
+            self.click_options()
+            self.selenium.find_element(*self._logout_menu_item_locator).click()
+            WebDriverWait(self.selenium, self.timeout).until(lambda s: not self.is_logout_menu_item_present)
+        
 
     class Footer(Page):
         """The common Footer region that is present on every page."""
