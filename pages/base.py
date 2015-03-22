@@ -23,15 +23,9 @@ class Base(Page):
 
     class Header(Page):
 
-        _search_box_locator = (By.CSS_SELECTOR, '.search-query')
-        _profile_menu_locator = (By.CSS_SELECTOR, '#nav-main > a.dropdown-toggle')
+        _search_box_locator = (By.ID, 'lst-ib')
+       # _profile_menu_locator = (By.CSS_SELECTOR, '#nav-main > a.dropdown-toggle')
 
-        # menu items
-        _dropdown_menu_locator = (By.CSS_SELECTOR, 'ul.dropdown-menu')
-        _view_profile_menu_item_locator = (By.ID, 'nav-profile')
-        _invite_menu_item_locator = (By.ID, 'nav-invite')
-        _edit_profile_menu_item_locator = (By.ID, 'nav-edit-profile')
-        _logout_menu_item_locator = (By.ID, 'nav-logout')
 
         @property
         def is_search_box_present(self):
