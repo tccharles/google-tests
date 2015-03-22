@@ -9,13 +9,12 @@ import requests
 from pages.home_page import Home
 from pages.profile import Profile
 
-
 class TestSearch:
 
 	#@pytest.mark.nondestructive
-	 @pytest.mark.xfail("config.getvalue('base_url') == 'https://www.google.com'")
-		def test_that_search_returns_relevant_results(self, Google):
-			query = u'Boulder'
+    @pytest.mark.xfail("config.getvalue('base_url') == 'https://www.google.com'")
+	    def test_that_search_returns_relevant_results(self, Google):
+		    query = u'Boulder'
 			home_page = Home(Google)
 			search_page = home_page.header.search_for(query)
 			Assert.true(search_page.results_count > 0)
