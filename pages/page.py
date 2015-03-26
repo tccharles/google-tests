@@ -33,7 +33,7 @@ class Page(object):
         try:
             self.selenium.maximize_window()
         except WebDriverException:
-        pass
+            pass
 
     @property
     def page_title(self):
