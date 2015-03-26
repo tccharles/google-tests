@@ -6,6 +6,7 @@
 import time
 import datetime
 
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 
 from base import Base
@@ -14,6 +15,11 @@ from page import PageRegion
 
 class HomePage(Base):
     """This Page Object models the Google Home Page (https://www.google.com/)."""
+    def __init__(self, testsetup, open_url=True):
+        Base.__init__(self, testsetup)
+        self.maximize_window()
+        if open_url:
+            self.selenium.get(self.base_url)
 
     # The title of this page, which is used by is_the_current_page() in page.py
     _page_title = u'Google'
@@ -23,4 +29,4 @@ class HomePage(Base):
 
     def go_to_page(self):
         """Open the home page."""
-        self.open('/')
+        self.open('www.google.com')
