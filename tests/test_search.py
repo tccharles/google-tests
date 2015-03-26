@@ -11,8 +11,7 @@ from pages.profile import Profile
 
 class TestSearch:
 
-    @pytest.mark.credentials
-    @pytest.mark.nondestructive
+    #@pytest.mark.nondestructive
     @pytest.mark.xfail("config.getvalue('base_url') == 'https://www.google.com'")
     def test_that_search_returns_relevant_results(self, Google):
 	    #query = u'Boulder'
