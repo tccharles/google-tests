@@ -29,6 +29,12 @@ class Page(object):
         self.selenium.get(self.base_url + url_fragment)
         self.is_the_current_page
 
+    def maximize_window(self):
+        try:
+            self.selenium.maximize_window()
+        except WebDriverException:
+        pass
+
     @property
     def page_title(self):
         """
