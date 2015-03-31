@@ -13,7 +13,7 @@ from pages.page import Page
 
 class Search(Base):
 
-    _result_locator = (By.CSS_SELECTOR, 'div.row > div.result')
+    _result_locator = (By.CSS_SELECTOR, 'div.row > div.rc')
     _search_button_locator = (By.CSS_SELECTOR, '.btn.primary:nth-of-type(1)')
     _advanced_options_button_locator = (By.CSS_SELECTOR, '.btn.primary:nth-of-type(2)')
     _advanced_options_locator = (By.CSS_SELECTOR, '.search-options')
